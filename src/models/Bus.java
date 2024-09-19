@@ -1,6 +1,6 @@
 package models;
 
-public class Bus extends Vehicle{
+public class Bus extends Vehicle {
     private int numberPlace;
 
     public Bus(String licenPlate, String model, int potemciaCV, int numberPlace) {
@@ -31,4 +31,15 @@ public class Bus extends Vehicle{
                 "numberPlace=" + numberPlace +
                 '}';
     }
+
+    @Override
+    public void paySalary() {
+        System.out.println("Se pado el salario del Bus: "+ this.getClass().getName() );
+    }
+
+    @Override
+    public void hireVehicle() {
+        System.out.println("Se contrató el Bus: "+ this.getClass().getName() );
+    }
+
 }

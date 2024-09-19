@@ -2,20 +2,19 @@ package models;
 
 import java.util.ArrayList;
 
-public class Taxi extends Vehicle{
+public class Taxi extends Vehicle implements Comparable<Taxi> {
 
     private String licence;
 
 
-    public Taxi(String licenPlate, String model, int potemciaCV, String licence) {
-        super(licenPlate, model, potemciaCV);
+
+    public Taxi(String licenPlate, String model, int powerCV, String licence) {
+        super(licenPlate, model, powerCV);
         this.licence = licence;
     }
 
     public Taxi() {
     }
-
-
 
     public String getLicence() {
         return licence;
@@ -23,10 +22,6 @@ public class Taxi extends Vehicle{
 
     public void setLicence(String licence) {
         this.licence = licence;
-    }
-
-    public void stopEngine() {
-        System.out.println("Se paro la maquima!!!");
     }
 
     @Override
@@ -40,5 +35,32 @@ public class Taxi extends Vehicle{
                 "licence='" + licence + '\'' +
                 '}';
     }
+
+    @Override
+    public void paySalary() {
+        System.out.println("Se pado el salario del Taxi: "+ this.getClass().getName() );
+    }
+
+    @Override
+    public void hireVehicle() {
+        System.out.println("Se contrató el Taxi: "+ this.getClass().getName() );
+    }
+
+    @Override
+    public int compareTo(Taxi o) {
+        int licenDiff = this.getLicence().compareTo(o.getLicence());
+
+        if (licenDiff != 0) {
+            return licenDiff;
+        }
+
+        int licenPlateDiff = this.getLicence().compareTo(o.getLicence());
+        if (licenPlateDiff != 0) {
+            return licenPlateDiff;
+        }
+
+        return this.getPowerCV() - o.getPowerCV();
+    }
+
 
 }

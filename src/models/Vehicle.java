@@ -1,21 +1,23 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Company{
     private String lienPlate;
     private String model;
     private int powerCV;
-    private static ArrayList<Conductor> conductores = new ArrayList<>();
+    private ArrayList<Conductor> conductores = new ArrayList<>();
 
-    public Vehicle(String licenPlate, String model, int potemciaCV) {
+    public Vehicle(String licenPlate, String model, int powerCV) {
         this.lienPlate = licenPlate;
         this.model = model;
-        this.powerCV = potemciaCV;
+        this.powerCV = powerCV;
     }
 
     public Vehicle() {
     }
+
 
     public String getLienPlate() {
         return lienPlate;
@@ -43,19 +45,26 @@ public abstract class Vehicle {
 
     public abstract void start();
 
-    public  void addConductor(Conductor c){
+    public void stopEngine() {
+        System.out.println("Se paro la maquima!!!");
+    }
+    public void ordenConductores(){
+        Collections.sort(conductores);
+    }
+
+    public void addConductor(Conductor c){
         conductores.add(c);
     }
-    public static void imprimirListaConductores(){
+    public void imprimirListaConductores(){
         for(Conductor c : conductores){
-            System.out.println(c.toString());
+            System.out.println("\t\t-"+c.toString());
         }
     }
 
     @Override
     public String toString() {
         return this.getClass().getName() +
-                "lienPlate='" + lienPlate + '\'' +
+                " lienPlate='" + lienPlate + '\'' +
                 ", model='" + model + '\'' +
                 ", powerCV=" + powerCV +
                 '}';

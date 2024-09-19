@@ -1,6 +1,6 @@
 package models;
 
-public class Conductor {
+public class Conductor implements Comparable<Conductor> {
     private int id;
     private String nombre;
     private int edad;
@@ -46,5 +46,18 @@ public class Conductor {
                 ", nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Conductor o) {
+        int edadDiff = this.edad - o.edad;
+        if (edadDiff != 0) {
+            return edadDiff;
+        }
+        int nombreDiff = this.nombre.compareTo(o.nombre);
+        if (nombreDiff != 0) {
+            return nombreDiff;
+        }
+        return this.getId() - o.getId();
     }
 }
